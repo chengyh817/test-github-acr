@@ -1,11 +1,8 @@
 #! /bin/bash
-PROJECT_ID="terraform" \
-TF_ADDRESS="https://YOUR_GitLab_Domain/api/v4/projects/YOUR_PROJECT_ID/terraform/state/YOUR_State_File" \
+# TF_ADDRESS="https://registry-vpc.cn-shanghai.aliyuncs.com/api/v4/projects/terraform/state/terraform.tfstate" \
 
-terraform init \
-  -backend-config=address=${TF_ADDRESS} \
-  -backend-config=lock_address=${TF_ADDRESS}/lock \
-  -backend-config=unlock_address=${TF_ADDRESS}/lock \
-  -backend-config=lock_method=POST \
-  -backend-config=unlock_method=DELETE \
-  -backend-config=retry_wait_min=5
+terraform init 
+#\
+#    -backend-config="address=registry-vpc.cn-shanghai.aliyuncs.com" \
+#    -backend-config="path=example_app/terraform.tfstate" \
+#    -backend-config="scheme=https"
