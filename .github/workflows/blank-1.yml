@@ -14,7 +14,7 @@ jobs:
  terraform:
    name: "Terraform Infrastructure Change Management"
    runs-on: ubuntu-latest
-   container: registry-vpc.cn-shanghai.aliyuncs.com/jllt-china/terraform:latest
+   container: registry.cn-shanghai.aliyuncs.com/jllt-china/terraform:latest
  
    steps:
      - name: Checkout the repository to the runner
