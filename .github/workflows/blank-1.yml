@@ -1,0 +1,59 @@
+name: "Terraform Infrastructure Change Management Pipeline with GitHub Actions only"
+ 
+on:
+ push:
+   branches:
+   - main
+ pull_request: {}
+ 
+env:
+ # verbosity setting for Terraform logs
+ TF_LOG: INFO
+
+ ALICLOUD_ACCESS_KEY: ${{ secrets.ALICLOUD_ACCESS_KEY }}
+ ALICLOUD_SECRET_KEY: ${{ secrets.ALICLOUD_SECRET_KEY }}
+ 
+jobs:
+ terraform:
+   name: "Terraform Infrastructure Change Management"
+   runs-on: ubuntu-latest
+   defaults:
+     run:
+       shell: bash
+       # We keep Terraform files in the terraform directory.
+       working-directory: .
+ 
+   steps:
+     - name: Checkout the repository to the runner
+       uses: actions/checkout@v2
+ 
+     - name: Setup Terraform with specified version on the runner
+       uses: hashicorp/setup-terraform@v2
+       with:
+         terraform_version: 1.3.0
+         cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
+
+     - name: Terraform format
+       id: fmt
+       run: terraform fmt -check || echo true
+
+     - name: Terraform init
+       id: init
+       run: terraform init
+
+     - name: Terraform validate
+       id: validate
+       run: terraform validate
+
+     - name: Terraform before access
+       id: before access
+       run: export TF_VAR_my_access_key=${my_access_key} 
+     - name: Terraform before secret
+       id: before secret
+       run: export TF_VAR_my_secret_key=${my_secret_key}
+ 
+     - name: Terraform plan
+       id: plan
+       if: github.event_name == 'push'
+       run: terraform plan -no-color -input=false
+       continue-on-error: true
