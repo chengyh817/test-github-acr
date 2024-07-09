@@ -1,7 +1,7 @@
 #! /bin/bash
 # TF_ADDRESS="https://registry-vpc.cn-shanghai.aliyuncs.com/api/v4/projects/terraform/state/terraform.tfstate" \
 
-terraform init 
+#terraform init 
 #\
 #    -backend-config="address=registry-vpc.cn-shanghai.aliyuncs.com" \
 #    -backend-config="path=example_app/terraform.tfstate" \
