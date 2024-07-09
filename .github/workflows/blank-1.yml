@@ -14,12 +14,6 @@ jobs:
  terraform:
    name: "Terraform Infrastructure Change Management"
    container: registry-vpc.cn-shanghai.aliyuncs.com/jllt-china/terraform:latest
-    
-   defaults:
-     run:
-       shell: bash
-       # We keep Terraform files in the terraform directory.
-       working-directory: .
  
    steps:
      - name: Checkout the repository to the runner
