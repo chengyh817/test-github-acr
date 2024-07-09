@@ -33,10 +33,10 @@ jobs:
        run: terraform validate
 
      - name: Terraform before access
-       id: before access
+       id: access
        run: export TF_VAR_ALICLOUD_ACCESS_KEY=${ALICLOUD_ACCESS_KEY} 
      - name: Terraform before secret
-       id: before secret
+       id: secret
        run: export TF_VAR_ALICLOUD_SECRET_KEY=${ALICLOUD_SECRET_KEY}
  
      - name: Terraform plan
