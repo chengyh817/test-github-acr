@@ -13,7 +13,7 @@ env:
 jobs:
  terraform:
    name: "Terraform Infrastructure Change Management"
-   container: YOUR_DOCKER_HUB_REPO/ubuntu_tf:test
+   container: registry-vpc.cn-shanghai.aliyuncs.com/jllt-china/terraform:latest
     
    defaults:
      run:
